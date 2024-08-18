@@ -1,7 +1,9 @@
 # Stage 1. Build
 FROM azul/zulu-openjdk:21-latest as build
 
-COPY build/libs/test-server-spring-0.0.1-SNAPSHOT.jar /app/test-server-spring.jar
+ARG VERSION
+
+COPY build/libs/test-server-spring-$VERSION.jar /app/test-server-spring.jar
 
 # Stage 2. Runtime (JRE is more lightweight than JDK)
 FROM azul/zulu-openjdk:21-jre-latest as runtime
