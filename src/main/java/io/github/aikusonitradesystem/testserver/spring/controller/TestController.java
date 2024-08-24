@@ -1,14 +1,15 @@
 package io.github.aikusonitradesystem.testserver.spring.controller;
 
-import io.github.aikusonitradesystem.core.constants.ErrorCode;
-import io.github.aikusonitradesystem.core.exception.ATSException;
+import io.github.aikusonitradesystem.mvcstandard.advice.CheckRole;
 import io.github.aikusonitradesystem.mvcstandard.model.view.ATSResponseBody;
-import jakarta.websocket.server.PathParam;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.enums.ParameterIn;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,30 +19,74 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class TestController {
 
-    @GetMapping("/role/{role-name}")
-    public ResponseEntity<ATSResponseBody<String>> roleTest(
-            @RequestHeader("X-Roles") String roles,
-            @PathParam("role-name") String roleName
+    @Operation(parameters = {
+            @Parameter(name = "X-Roles", in = ParameterIn.HEADER, schema = @Schema(type = "string"))
+    })
+    @CheckRole("admin")
+    @GetMapping("/role/admin")
+    public ResponseEntity<ATSResponseBody<String>> admin(
     ) throws Exception {
-        if (roles == null) {
-            throw new ATSException(ErrorCode.FORBIDDEN, "TTC-000001", "권한이 설정되지 않은 계정으로 접근 했습니다.");
-        }
-        if (!roles.contains(roleName)) {
-            throw new ATSException(ErrorCode.FORBIDDEN, "TTC-000002", "권한이 없는 계정으로 접근 했습니다.");
-        }
         return ATSResponseBody
-                .ok("권한 존재")
+                .ok("ok", "권한이 존재합니다.")
                 .toResponseEntity();
     }
 
-    // TODO core 모듈에 annotation을 사용해 aspect로 처리하는 기능 추가 필요
-//    @HasRole()
-//    @GetMapping("/role/{role-name}")
-//    public ResponseEntity<ATSResponseBody<String>> roleTestAop(
-//    ) throws Exception {
-//
-//        return ATSResponseBody
-//                .ok("권한 존재")
-//                .toResponseEntity();
-//    }
+    @Operation(parameters = {
+            @Parameter(name = "X-Roles", in = ParameterIn.HEADER, schema = @Schema(type = "string"))
+    })
+    @CheckRole("item-registration")
+    @GetMapping("/role/item-registration")
+    public ResponseEntity<ATSResponseBody<String>> itemRegistration(
+    ) throws Exception {
+        return ATSResponseBody
+                .ok("ok", "권한이 존재합니다.")
+                .toResponseEntity();
+    }
+
+    @Operation(parameters = {
+            @Parameter(name = "X-Roles", in = ParameterIn.HEADER, schema = @Schema(type = "string"))
+    })
+    @CheckRole("item-sell")
+    @GetMapping("/role/item-sell")
+    public ResponseEntity<ATSResponseBody<String>> itemSell(
+    ) throws Exception {
+        return ATSResponseBody
+                .ok("ok", "권한이 존재합니다.")
+                .toResponseEntity();
+    }
+
+    @Operation(parameters = {
+            @Parameter(name = "X-Roles", in = ParameterIn.HEADER, schema = @Schema(type = "string"))
+    })
+    @CheckRole("item-buy")
+    @GetMapping("/role/item-buy")
+    public ResponseEntity<ATSResponseBody<String>> itemBuy(
+    ) throws Exception {
+        return ATSResponseBody
+                .ok("ok", "권한이 존재합니다.")
+                .toResponseEntity();
+    }
+
+    @Operation(parameters = {
+            @Parameter(name = "X-Roles", in = ParameterIn.HEADER, schema = @Schema(type = "string"))
+    })
+    @CheckRole("item-stat")
+    @GetMapping("/role/item-stat")
+    public ResponseEntity<ATSResponseBody<String>> itemStat(
+    ) throws Exception {
+        return ATSResponseBody
+                .ok("ok", "권한이 존재합니다.")
+                .toResponseEntity();
+    }
+
+    @Operation(parameters = {
+            @Parameter(name = "X-Roles", in = ParameterIn.HEADER, schema = @Schema(type = "string"))
+    })
+    @GetMapping("/role/everyone")
+    public ResponseEntity<ATSResponseBody<String>> everyone(
+    ) throws Exception {
+        return ATSResponseBody
+                .ok("ok", "권한이 존재합니다.")
+                .toResponseEntity();
+    }
 }

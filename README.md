@@ -3,5 +3,5 @@
 
 ### JAR 환경변수 목록
 - spring.profiles.active (예: local , dev, prod)
-- SERVER_PORT (예: 8000)
+- SERVER_PORT (예: 8900)
 - LOG_HOME (예: logs)
