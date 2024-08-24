@@ -1,6 +1,5 @@
 package io.github.aikusonitradesystem.testserver.spring.config;
 
-import io.github.aikusonitradesystem.authserver.session.properties.AuthServerProperties;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
