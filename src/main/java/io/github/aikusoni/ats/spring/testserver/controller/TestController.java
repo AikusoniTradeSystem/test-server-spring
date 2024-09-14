@@ -1,7 +1,9 @@
-package io.github.aikusonitradesystem.testserver.spring.controller;
+package io.github.aikusoni.ats.spring.testserver.controller;
 
-import io.github.aikusonitradesystem.mvcstandard.advice.CheckRole;
-import io.github.aikusonitradesystem.mvcstandard.model.view.ATSResponseBody;
+import io.github.aikusoni.ats.spring.core.common.MessageCode;
+import io.github.aikusoni.ats.spring.mvcstandard.advice.CheckRole;
+import io.github.aikusoni.ats.spring.mvcstandard.model.view.ATSResponseBody;
+import io.github.aikusoni.ats.spring.testserver.constants.TestMessageCode;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
@@ -12,6 +14,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import static io.github.aikusoni.ats.spring.testserver.constants.TestMessageCode.HAS_PERMISSION;
 
 @Slf4j
 @RestController
@@ -27,7 +31,7 @@ public class TestController {
     public ResponseEntity<ATSResponseBody<String>> admin(
     ) throws Exception {
         return ATSResponseBody
-                .ok("ok", "권한이 존재합니다.")
+                .ok("ok", HAS_PERMISSION)
                 .toResponseEntity();
     }
 
@@ -39,7 +43,7 @@ public class TestController {
     public ResponseEntity<ATSResponseBody<String>> itemRegistration(
     ) throws Exception {
         return ATSResponseBody
-                .ok("ok", "권한이 존재합니다.")
+                .ok("ok", HAS_PERMISSION)
                 .toResponseEntity();
     }
 
@@ -51,7 +55,7 @@ public class TestController {
     public ResponseEntity<ATSResponseBody<String>> itemSell(
     ) throws Exception {
         return ATSResponseBody
-                .ok("ok", "권한이 존재합니다.")
+                .ok("ok", HAS_PERMISSION)
                 .toResponseEntity();
     }
 
@@ -63,7 +67,7 @@ public class TestController {
     public ResponseEntity<ATSResponseBody<String>> itemBuy(
     ) throws Exception {
         return ATSResponseBody
-                .ok("ok", "권한이 존재합니다.")
+                .ok("ok", HAS_PERMISSION)
                 .toResponseEntity();
     }
 
@@ -75,7 +79,7 @@ public class TestController {
     public ResponseEntity<ATSResponseBody<String>> itemStat(
     ) throws Exception {
         return ATSResponseBody
-                .ok("ok", "권한이 존재합니다.")
+                .ok("ok", HAS_PERMISSION)
                 .toResponseEntity();
     }
 
@@ -86,7 +90,7 @@ public class TestController {
     public ResponseEntity<ATSResponseBody<String>> everyone(
     ) throws Exception {
         return ATSResponseBody
-                .ok("ok", "권한이 존재합니다.")
+                .ok("ok", HAS_PERMISSION)
                 .toResponseEntity();
     }
 }
